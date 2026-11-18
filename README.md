@@ -114,6 +114,11 @@ The public deployment repo is
 
 5. Choose an app subdomain and click **Deploy**.
 
+If the deployed app warns that `GROQ_API_KEY` is missing, edit the secret after
+deployment: from the app, click **Manage app** (lower-right) → overflow menu
+(`⋮`) → **Settings** → **Secrets**. Paste the TOML above, click **Save**, then
+**Reboot app** if the warning persists.
+
 Notes:
 
 - `chroma_store/` is committed, so the deployed app does not ingest at startup.

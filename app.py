@@ -6,6 +6,7 @@ from config import (
     GROQ_MODEL,
     SAMPLE_QUESTIONS,
     has_groq_api_key,
+    secrets_diagnostics,
 )
 from embedding import get_embeddings
 from feedback import log_feedback
@@ -195,9 +196,21 @@ if total_documents == 0:
     )
 elif not has_groq_api_key():
     st.warning(
-        "GROQ_API_KEY is not configured. Copy `.env.example` to `.env` and add "
-        "your key from console.groq.com, then restart the app."
+        "GROQ_API_KEY is not configured for this deployment. On Streamlit "
+        "Community Cloud, click **Manage app** (lower-right) → **Settings** → "
+        "**Secrets**, paste the TOML below, and save. Locally, add the key to "
+        "`.env`."
     )
+    st.code(
+        'GROQ_API_KEY = "gsk_your_key_here"\n'
+        'GROQ_MODEL = "qwen/qwen3.8-27b"\n'
+        'GROQ_REASONING_EFFORT = "none"',
+        language="toml",
+    )
+    with st.expander("Deployment diagnostics"):
+        st.json(secrets_diagnostics())
+    if st.button("I added the secret - recheck"):
+        st.rerun()
 
 for index, message in enumerate(st.session_state.messages):
     render_message(message, index)
