@@ -1,0 +1,5 @@
+* text=auto
+*.bin binary
+*.pdf binary
+*.db binary
+*.sqlite3 binary

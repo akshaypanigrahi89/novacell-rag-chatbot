@@ -1,0 +1,11 @@
+.venv/
+.env
+logs/
+__pycache__/
+*.pyc
+.streamlit/
+deepseek-harness/
+prd_exercise/
+prd_exercise.zip
+PROBLEM_STATEMENT.txt
+.DS_Store
